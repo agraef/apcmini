@@ -1,0 +1,203 @@
+#N canvas 571 393 449 376 12;
+#X declare -path lib;
+#X obj 30 60 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 300 330 pd-remote;
+#X msg 300 300 pdluax reload;
+#X obj 50 160 midi-input;
+#X msg 360 160 model;
+#X obj 30 330 midi-output;
+#X obj 30 243 t a a;
+#X obj 130 201 tgl 15 0 empty empty empty 17 7 0 10 #fff600 #000000
+#000000 0 1;
+#N canvas 997 540 450 300 out 0;
+#X obj 119 110 print;
+#X obj 10 30 inlet;
+#X obj 40 240 route stop solo mute rec sel note sysex;
+#X obj 10 80 route note sysex;
+#X text 10 160 the messages that may be output by the external: stop
+to stop clips in a track \, track controls (solo \, mute \, rec arm
+\, and select) \, and note and sysex which should be passed on to midi-output
+;
+#X text 140 80 print everything but note and sysex;
+#X connect 1 0 3 0;
+#X connect 3 2 0 0;
+#X restore 130 270 pd out;
+#N canvas 1042 301 466 512 in 0;
+#X obj 20 60 hradio 15 0 0 3 empty empty empty 0 -8 0 10 #fcfcfc #000000
+#000000 0;
+#X msg 20 84 mode \$1;
+#X obj 70 370 hradio 15 0 0 7 empty empty empty 0 -8 0 10 #fcfcfc #000000
+#000000 0;
+#X msg 70 394 pad 1 \$1;
+#X obj 20 460 outlet;
+#X text 90 60 switch between launchpad \, note \, and drum mode (mk2
+only), f 34;
+#X obj 70 310 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 13;
+#X msg 70 330 pad 0 \$1 7;
+#X text 200 310 change pad colors (mk2 color spec);
+#X text 200 380 change pad colors (mk1 color spec);
+#X text 200 340 (also see the animation subpatch in the main patch)
+, f 33;
+#X text 150 420 note that colors may be specified using either mk1
+or mk2 specifications \, they will be mapped to the device as needed
+, f 40;
+#X text 20 20 some input messages to change button states;
+#X obj 60 250 hradio 15 0 0 5 empty empty empty 0 -8 0 10 #fcfcfc #000000
+#000000 0;
+#X msg 60 274 key \$1;
+#X text 150 160 change the status of the bank switch buttons;
+#X text 150 250 change the status of the softkey buttons;
+#X obj 60 190 hradio 15 0 0 5 empty empty empty 0 -8 0 10 #fcfcfc #000000
+#000000 0;
+#X text 150 190 change the status of the fader assignment;
+#X msg 60 214 assign \$1;
+#X obj 30 130 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X msg 30 160 banks 0 \$1 0 \$1;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 4 0;
+#X connect 13 0 14 0;
+#X connect 14 0 4 0;
+#X connect 17 0 19 0;
+#X connect 19 0 4 0;
+#X connect 20 0 21 0;
+#X connect 21 0 4 0;
+#X restore 130 160 pd in;
+#N canvas 1047 495 513 300 color-animation 0;
+#N canvas 1470 392 450 300 animate 0;
+#X obj 40 109 f;
+#X obj 80 109 + 1;
+#X obj 120 109 mod 64;
+#X obj 40 138 t b f;
+#X obj 40 80 metro 125;
+#X obj 13 26 inlet;
+#X obj 13 211 outlet;
+#X obj 69 211 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 1;
+#X connect 3 0 6 0;
+#X connect 3 1 7 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X restore 70 110 pd animate;
+#N canvas 499 235 450 300 colors 0;
+#X obj 50 240 outlet;
+#X obj 132 240 outlet;
+#X obj 260 240 outlet;
+#X obj 50 130 until;
+#X obj 50 200 f;
+#X obj 132 200 f;
+#X msg 50 88 64;
+#X obj 150 88 f;
+#X obj 50 59 t b b b b;
+#X obj 80 200 + 1;
+#X obj 162 200 + 1;
+#X obj 50 159 t b b;
+#X obj 90 88 f;
+#X obj 220 59 t f f;
+#X obj 260 200 f 7;
+#X obj 50 30 inlet bang;
+#X obj 140 30 inlet base;
+#X obj 220 30 inlet mode;
+#X obj 252 90 expr if($f1==64 \, 10 \, $f2);
+#X obj 300 59 t f f;
+#X obj 300 30 inlet chan;
+#X connect 3 0 11 0;
+#X connect 4 0 0 0;
+#X connect 4 0 9 0;
+#X connect 5 0 1 0;
+#X connect 5 0 10 0;
+#X connect 6 0 3 0;
+#X connect 7 0 5 1;
+#X connect 8 0 6 0;
+#X connect 8 1 12 0;
+#X connect 8 2 7 0;
+#X connect 8 3 14 0;
+#X connect 9 0 4 1;
+#X connect 10 0 5 1;
+#X connect 11 0 4 0;
+#X connect 11 1 5 0;
+#X connect 12 0 4 1;
+#X connect 13 0 12 1;
+#X connect 13 1 18 0;
+#X connect 14 0 2 0;
+#X connect 15 0 8 0;
+#X connect 16 0 7 1;
+#X connect 17 0 13 0;
+#X connect 18 0 14 1;
+#X connect 19 0 14 1;
+#X connect 19 1 18 1;
+#X connect 20 0 19 0;
+#X restore 70 150 pd colors;
+#X floatatom 170 130 5 0 0 0 - - -, f 5;
+#X obj 170 110 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 64;
+#X obj 70 209 pack f f f;
+#X msg 70 238 pad \$1 \$2 \$3;
+#X obj 30 110 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 70 30 inlet;
+#X obj 70 270 outlet;
+#X text 170 10 There is a palette of 128 RGB color values available
+on the mk2 (on the mk1 these are mapped to red \, green \, and orange).
+Click the toggle to change between colors 0..63 and 64..127., f 39
+;
+#X obj 170 158 t b f;
+#X obj 70 179 +;
+#X obj 240 180 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 64;
+#X obj 70 59 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000
+0 1;
+#X text 240 120 In drum mode (mk2 only) \, the pad numbers start at
+64 \, click the toggle below for that:, f 32;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 1 0 11 0;
+#X connect 1 1 4 1;
+#X connect 1 2 4 2;
+#X connect 2 0 10 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 8 0;
+#X connect 6 0 1 0;
+#X connect 7 0 13 0;
+#X connect 10 0 1 0;
+#X connect 10 1 1 1;
+#X connect 11 0 4 0;
+#X connect 12 0 11 1;
+#X connect 13 0 0 0;
+#X restore 130 230 pd color-animation;
+#X text 190 270 <- click to open;
+#X text 280 230 <- click to open;
+#X text 180 160 <- click to open;
+#X text 70 130 receive MIDI from the device;
+#X text 50 300 send MIDI to the device;
+#X obj 360 102 loadbang;
+#X obj 30 214 apcmini;
+#X text 60 60 click here to update the buttons and print status, f
+51;
+#X text 20 20 apcmini - an AKAI APC mini mk1 and mk2 driver for Pd
+;
+#X obj 140 330 declare -path lib;
+#X obj 360 131 del 500;
+#X text 110 100 model auto-detection (mk1 or mk2):;
+#X connect 0 0 17 0;
+#X connect 2 0 1 0;
+#X connect 3 0 17 0;
+#X connect 4 0 17 0;
+#X connect 6 0 5 0;
+#X connect 6 1 8 0;
+#X connect 7 0 10 0;
+#X connect 9 0 17 0;
+#X connect 10 0 17 0;
+#X connect 16 0 21 0;
+#X connect 17 0 6 0;
+#X connect 21 0 4 0;
