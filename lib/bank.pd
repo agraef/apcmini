@@ -1,0 +1,25 @@
+#N canvas 593 328 450 334 12;
+#X obj 160 80 t f f;
+#X obj 160 109 + 8;
+#X obj 192 136 > 0;
+#X obj 20 30 inlet;
+#X obj 160 30 inlet;
+#X text 230 80 hard-coded bank size of 8 for now - adjust as needed
+, f 26;
+#X obj 20 136 >;
+#X obj 20 194 pack f f;
+#X msg 20 223 \$2 \$1;
+#X obj 20 252 unpack f f;
+#X obj 20 281 outlet;
+#X obj 90 281 outlet;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 1 0 6 1;
+#X connect 2 0 7 1;
+#X connect 3 0 6 0;
+#X connect 4 0 0 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 9 1 11 0;

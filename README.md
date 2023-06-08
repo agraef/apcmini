@@ -4,6 +4,8 @@ This external implements a simplified interface between Pd and the APC mini. It 
 
 The external is written in Lua, so [pd-lua](https://agraef.github.io/pd-lua/) is required (and Pd, of course; both [vanilla Pd](http://msp.ucsd.edu/software.html) and [Purr Data](https://agraef.github.io/purr-data/) will work, the latter already includes pd-lua). MIDI data is encoded in [SMMF](https://bitbucket.org/agraef/pd-smmf), the corresponding midi-input and midi-output abstractions are included.
 
-More details about the message protocol can be found in the comment section at the beginning of the apcmini.pd_lua file in the lib subdirectory. Please also check the included help patch for examples showing how to use the external.
+More details about the message protocol can be found in the comment section at the beginning of the apcmini.pd_lua file in the lib subdirectory. Please also check the included help patch for an introductory example showing how to use the external.
 
-Copyright © 2023 by Albert Gräf <aggraef@gmail.com>, distributed under the GPL (see COPYING)
+A full-blown example can be found in ardour-clip-launcher.pd which interfaces the APC mini to Ardour's clip launcher; documentation for this patch is in the ardour-clip-launcher.md file.
+
+Copyright © 2023 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING)
