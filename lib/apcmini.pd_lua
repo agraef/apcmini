@@ -620,7 +620,7 @@ function apcmini:in_1_note(args)
 	       else
 		  -- track controls, depending on the operation mode
 		  -- NOTE: the mk1 has rec and mute in reverse order
-		  local sym = mode==1 and
+		  local sym = self.model==1 and
 		     {"stop", "solo", "mute", "rec", "sel"} or
 		     {"stop", "solo", "rec", "mute", "sel"}
 		  self:outlet(1, sym[self.key], {n-64})
