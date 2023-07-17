@@ -166,9 +166,14 @@ function mdnsbrowser:in_1_bang()
 	 for k,v in ipairs(self.data) do
 	    -- ignore any double entries and entries for ourselves
 	    if (not me or v.name ~= me) and not map[v.name] then
-	       table.insert(out, v.name)
-	       map[v.name] = {v.addr, v.port}
-	       --pd.post(string.format("%s => %s %d", v.name, v.addr, v.port))
+	       -- We're specifically looking for Ardour here, just ignore
+	       -- everything else in case some other _osc._udp services are
+	       -- offered on the local network.
+	       if string.find(v.name, "Ardour-") == 1 then
+		  table.insert(out, v.name)
+		  map[v.name] = {v.addr, v.port}
+		  --pd.post(string.format("%s => %s %d", v.name, v.addr, v.port))
+	       end
 	    end
 	 end
 	 self.data = map

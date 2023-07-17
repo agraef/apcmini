@@ -7,9 +7,9 @@ Fortunately, the clip launcher *is* well supported (including feedback) in Ardou
 
 ## Requirements
 
-This program is implemented as a Pd patch, and includes some externals written in Lua, so you'll need Pd (any recent version of vanilla [Pd](http://msp.ucsd.edu/software.html) or [Purr Data](https://agraef.github.io/purr-data/) will do) and Pd-Lua. Purr Data comes with a suitable version of Pd-Lua included. When using vanilla Pd, get the latest Pd-Lua version from https://agraef.github.io/pd-lua/. (Do *not* use the much older Pd-Lua version available in Pd's package manager Deken, it will not work with the present patch.)
+This program is implemented as a Pd patch, and includes some externals written in Lua, so you'll need Pd (any recent version of vanilla [Pd](http://msp.ucsd.edu/software.html) or [Purr Data](https://agraef.github.io/purr-data/) will do) and Pd-Lua. Purr Data comes with a suitable version of Pd-Lua included. When using vanilla Pd, get the latest Pd-Lua version from Deken, or directly from https://agraef.github.io/pd-lua/. (Pd-Lua 0.11.5 and later have been tested.)
 
-The mdnsbrowser external also requires a Zeroconf (Avahi/Bonjour) module for Lua which is written in C. This is used to discover the OSC connection to Ardour, and needs to be compiled in the lib subdirectory by running `make` there. (This will only work if you have Avahi or Bonjour installed and configured on your system; you may want to consult the README of the [mdnsbrowser](https://github.com/agraef/mdnsbrowser) module for more detailed information.)
+The mdnsbrowser external also requires a Zeroconf (Avahi/Bonjour) module for Lua which is written in C. This is used to discover the OSC connection to Ardour, and needs to be compiled in the lib subdirectory by running `make` there. (This will only work if you have Avahi or Bonjour installed and configured on your system; you may want to consult the README of the [mdnsbrowser](https://github.com/agraef/mdnsbrowser) module for more detailed information. Also, it seems that at the time of this writing, Ardour doesn't support Bonjour on Windows. Below you can find some instructions on how to manually set up the OSC connection if Zeroconf is not working for you.)
 
 ## Setup
 
@@ -21,7 +21,7 @@ Next you'll need to set up the OSC network connections, which may require a bit 
 
 ![ardour-osc-setup](pics/ardour-osc-setup.png)
 
-At this point, the patch should auto-connect to Ardour if Zeroconf is working. (However, if you have multiple published OSC connections on your local network, and Ardour isn't the first one, you may have to push the "next" button in the `oscbrowser` abstraction -- the one on the right -- until you find the right connection.) Once the connection is established, at least some of the buttons on the APC mini should light up, and the patch will look similar to this:
+At this point, the patch should auto-connect to Ardour if Zeroconf is working. (However, if you have multiple published OSC connections to Ardour on your local network, then you may have to push the "next" button in the `oscbrowser` abstraction -- the one on the right -- until you find the right connection.) Once the connection is established, at least some of the buttons on the APC mini should light up, and the patch will look similar to this:
 
 ![ardour-clip-launcher](pics/ardour-clip-launcher.png)
 
