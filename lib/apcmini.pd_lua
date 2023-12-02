@@ -534,10 +534,8 @@ function apcmini:in_1_note(args)
       self:outlet(1, "note", {n, v, c})
    elseif c==1 then
       if n < 64 then
-	 if v>0 then
-	    -- pad pressed
-	    self:outlet(1, "pad", {n})
-	 end
+	 -- pad pressed
+	 self:outlet(1, "pad", {n, v})
       else
 	 local n = self:from_button(n)
 	 if n == 98 then
