@@ -216,6 +216,10 @@ function apcmini:update_track_buttons()
 				 self.banks[i+1], 1})
       end
    else
+      -- rec and mute states are swapped on the mk2
+      if self.model == 1 and k>=3 and k<=4 then
+	 k = 4-k+3
+      end
       for i = 0, 7 do
 	 self:outlet(1, "note", {self:to_button(i+64),
 				 self.key_states[k][i+1], 1})
@@ -444,7 +448,7 @@ end
 function apcmini:in_1_stop(args)
    local n, v, c = table.unpack(args)
    n, v = midibyte(n, 0, 7), midibyte(v, 0, 1)
-   self.stop[n] = v
+   self.stop[n+1] = v
    if self.key == 1 then
       self:outlet(1, "note", {self:to_button(64+n), v, 1})
    end
@@ -453,7 +457,7 @@ end
 function apcmini:in_1_solo(args)
    local n, v, c = table.unpack(args)
    n, v = midibyte(n, 0, 7), midibyte(v, 0, 1)
-   self.solo[n] = v
+   self.solo[n+1] = v
    if self.key == 2 then
       self:outlet(1, "note", {self:to_button(64+n), v, 1})
    end
@@ -462,7 +466,7 @@ end
 function apcmini:in_1_mute(args)
    local n, v, c = table.unpack(args)
    n, v = midibyte(n, 0, 7), midibyte(v, 0, 1)
-   self.mute[n] = v
+   self.mute[n+1] = v
    if self.key == 3 then
       self:outlet(1, "note", {self:to_button(64+n), v, 1})
    end
@@ -471,7 +475,7 @@ end
 function apcmini:in_1_rec(args)
    local n, v, c = table.unpack(args)
    n, v = midibyte(n, 0, 7), midibyte(v, 0, 1)
-   self.rec[n] = v
+   self.rec[n+1] = v
    if self.key == 4 then
       self:outlet(1, "note", {self:to_button(64+n), v, 1})
    end
@@ -480,7 +484,7 @@ end
 function apcmini:in_1_sel(args)
    local n, v, c = table.unpack(args)
    n, v = midibyte(n, 0, 7), midibyte(v, 0, 1)
-   self.sel[n] = v
+   self.sel[n+1] = v
    if self.key == 5 then
       self:outlet(1, "note", {self:to_button(64+n), v, 1})
    end
@@ -620,7 +624,7 @@ function apcmini:in_1_note(args)
 	       else
 		  -- track controls, depending on the operation mode
 		  -- NOTE: the mk1 has rec and mute in reverse order
-		  local sym = mode==1 and
+		  local sym = self.model==1 and
 		     {"stop", "solo", "mute", "rec", "sel"} or
 		     {"stop", "solo", "rec", "mute", "sel"}
 		  self:outlet(1, sym[self.key], {n-64})
