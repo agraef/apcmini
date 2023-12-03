@@ -643,3 +643,8 @@ function apcmini:in_1_ctl(args)
       self:outlet(1, sym[self.assign], {n-48, v})
    end
 end
+
+function apcmini:in_1(sel, args)
+   -- ignore all other messages that we might receive
+   pd.post("apcmini: warning: unrecognized " .. sel .. " message")
+end
