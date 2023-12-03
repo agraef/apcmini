@@ -1,6 +1,230 @@
 {
 	"mappings": [
 		{
+			"channel": 10,
+			"identifier": "seq 20",
+			"isButton": true,
+			"isCC": false,
+			"value": 0
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 21",
+			"isButton": true,
+			"isCC": false,
+			"value": 1
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 22",
+			"isButton": true,
+			"isCC": false,
+			"value": 2
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 23",
+			"isButton": true,
+			"isCC": false,
+			"value": 3
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 16",
+			"isButton": true,
+			"isCC": false,
+			"value": 4
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 17",
+			"isButton": true,
+			"isCC": false,
+			"value": 5
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 18",
+			"isButton": true,
+			"isCC": false,
+			"value": 6
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 19",
+			"isButton": true,
+			"isCC": false,
+			"value": 7
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 4",
+			"isButton": true,
+			"isCC": false,
+			"value": 8
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 5",
+			"isButton": true,
+			"isCC": false,
+			"value": 9
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 6",
+			"isButton": true,
+			"isCC": false,
+			"value": 10
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 7",
+			"isButton": true,
+			"isCC": false,
+			"value": 11
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 0",
+			"isButton": true,
+			"isCC": false,
+			"value": 12
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 1",
+			"isButton": true,
+			"isCC": false,
+			"value": 13
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 2",
+			"isButton": true,
+			"isCC": false,
+			"value": 14
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 3",
+			"isButton": true,
+			"isCC": false,
+			"value": 15
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 28",
+			"isButton": true,
+			"isCC": false,
+			"value": 16
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 29",
+			"isButton": true,
+			"isCC": false,
+			"value": 17
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 30",
+			"isButton": true,
+			"isCC": false,
+			"value": 18
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 31",
+			"isButton": true,
+			"isCC": false,
+			"value": 19
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 24",
+			"isButton": true,
+			"isCC": false,
+			"value": 20
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 25",
+			"isButton": true,
+			"isCC": false,
+			"value": 21
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 26",
+			"isButton": true,
+			"isCC": false,
+			"value": 22
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 27",
+			"isButton": true,
+			"isCC": false,
+			"value": 23
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 12",
+			"isButton": true,
+			"isCC": false,
+			"value": 24
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 13",
+			"isButton": true,
+			"isCC": false,
+			"value": 25
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 14",
+			"isButton": true,
+			"isCC": false,
+			"value": 26
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 15",
+			"isButton": true,
+			"isCC": false,
+			"value": 27
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 8",
+			"isButton": true,
+			"isCC": false,
+			"value": 28
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 9",
+			"isButton": true,
+			"isCC": false,
+			"value": 29
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 10",
+			"isButton": true,
+			"isCC": false,
+			"value": 30
+		},
+		{
+			"channel": 10,
+			"identifier": "seq 11",
+			"isButton": true,
+			"isCC": false,
+			"value": 31
+		},
+		{
 			"channel": 16,
 			"identifier": "solo",
 			"isButton": true,
@@ -78,44 +302,9 @@
 			"value": 32
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 20",
-			"isButton": true,
-			"isCC": true,
-			"value": 32
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 21",
-			"isButton": true,
-			"isCC": true,
-			"value": 33
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 22",
-			"isButton": true,
-			"isCC": true,
-			"value": 34
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 23",
-			"isButton": true,
-			"isCC": true,
-			"value": 35
-		},
-		{
 			"channel": 1,
 			"identifier": "sampleStart",
 			"isButton": false,
-			"isCC": true,
-			"value": 36
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 16",
-			"isButton": true,
 			"isCC": true,
 			"value": 36
 		},
@@ -127,30 +316,9 @@
 			"value": 37
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 17",
-			"isButton": true,
-			"isCC": true,
-			"value": 37
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 18",
-			"isButton": true,
-			"isCC": true,
-			"value": 38
-		},
-		{
 			"channel": 1,
 			"identifier": "fx CRUSH",
 			"isButton": false,
-			"isCC": true,
-			"value": 39
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 19",
-			"isButton": true,
 			"isCC": true,
 			"value": 39
 		},
@@ -162,23 +330,9 @@
 			"value": 40
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 4",
-			"isButton": true,
-			"isCC": true,
-			"value": 40
-		},
-		{
 			"channel": 1,
 			"identifier": "fx COMB",
 			"isButton": false,
-			"isCC": true,
-			"value": 41
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 5",
-			"isButton": true,
 			"isCC": true,
 			"value": 41
 		},
@@ -190,23 +344,9 @@
 			"value": 42
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 6",
-			"isButton": true,
-			"isCC": true,
-			"value": 42
-		},
-		{
 			"channel": 1,
 			"identifier": "fx REVERB",
 			"isButton": false,
-			"isCC": true,
-			"value": 43
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 7",
-			"isButton": true,
 			"isCC": true,
 			"value": 43
 		},
@@ -218,23 +358,9 @@
 			"value": 44
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 0",
-			"isButton": true,
-			"isCC": true,
-			"value": 44
-		},
-		{
 			"channel": 1,
 			"identifier": "fx GATE",
 			"isButton": false,
-			"isCC": true,
-			"value": 45
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 1",
-			"isButton": true,
 			"isCC": true,
 			"value": 45
 		},
@@ -246,30 +372,9 @@
 			"value": 46
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 2",
-			"isButton": true,
-			"isCC": true,
-			"value": 46
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 3",
-			"isButton": true,
-			"isCC": true,
-			"value": 47
-		},
-		{
 			"channel": 1,
 			"identifier": "fx CUTTER",
 			"isButton": false,
-			"isCC": true,
-			"value": 48
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 28",
-			"isButton": true,
 			"isCC": true,
 			"value": 48
 		},
@@ -281,23 +386,9 @@
 			"value": 49
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 29",
-			"isButton": true,
-			"isCC": true,
-			"value": 49
-		},
-		{
 			"channel": 1,
 			"identifier": "fx DUB",
 			"isButton": false,
-			"isCC": true,
-			"value": 50
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 30",
-			"isButton": true,
 			"isCC": true,
 			"value": 50
 		},
@@ -309,23 +400,9 @@
 			"value": 51
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 31",
-			"isButton": true,
-			"isCC": true,
-			"value": 51
-		},
-		{
 			"channel": 1,
 			"identifier": "mixer vol -1",
 			"isButton": false,
-			"isCC": true,
-			"value": 52
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 24",
-			"isButton": true,
 			"isCC": true,
 			"value": 52
 		},
@@ -337,13 +414,6 @@
 			"value": 53
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 25",
-			"isButton": true,
-			"isCC": true,
-			"value": 53
-		},
-		{
 			"channel": 1,
 			"identifier": "fx DIRTY",
 			"isButton": false,
@@ -351,23 +421,9 @@
 			"value": 54
 		},
 		{
-			"channel": 16,
-			"identifier": "seq 26",
-			"isButton": true,
-			"isCC": true,
-			"value": 54
-		},
-		{
 			"channel": 1,
 			"identifier": "fx COMPRESSOR",
 			"isButton": false,
-			"isCC": true,
-			"value": 55
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 27",
-			"isButton": true,
 			"isCC": true,
 			"value": 55
 		},
@@ -398,34 +454,6 @@
 			"isButton": true,
 			"isCC": true,
 			"value": 59
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 8",
-			"isButton": true,
-			"isCC": true,
-			"value": 60
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 9",
-			"isButton": true,
-			"isCC": true,
-			"value": 61
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 10",
-			"isButton": true,
-			"isCC": true,
-			"value": 62
-		},
-		{
-			"channel": 16,
-			"identifier": "seq 11",
-			"isButton": true,
-			"isCC": true,
-			"value": 63
 		},
 		{
 			"channel": 1,
@@ -473,322 +501,322 @@
 	"pads": [
 		{
 			"channel": 10,
-			"note": 0,
+			"note": 36,
 			"pad": 12
 		},
 		{
 			"channel": 10,
-			"note": 1,
+			"note": 37,
 			"pad": 13
 		},
 		{
 			"channel": 10,
-			"note": 2,
+			"note": 38,
 			"pad": 14
 		},
 		{
 			"channel": 10,
-			"note": 3,
+			"note": 39,
 			"pad": 15
 		},
 		{
 			"channel": 10,
-			"note": 4,
+			"note": 40,
 			"pad": 8
 		},
 		{
 			"channel": 10,
-			"note": 5,
+			"note": 41,
 			"pad": 9
 		},
 		{
 			"channel": 10,
-			"note": 6,
+			"note": 42,
 			"pad": 10
 		},
 		{
 			"channel": 10,
-			"note": 7,
+			"note": 43,
 			"pad": 11
 		},
 		{
 			"channel": 10,
-			"note": 8,
+			"note": 44,
 			"pad": 4
 		},
 		{
 			"channel": 10,
-			"note": 9,
+			"note": 45,
 			"pad": 5
 		},
 		{
 			"channel": 10,
-			"note": 10,
+			"note": 46,
 			"pad": 6
 		},
 		{
 			"channel": 10,
-			"note": 11,
+			"note": 47,
 			"pad": 7
 		},
 		{
 			"channel": 10,
-			"note": 12,
+			"note": 48,
 			"pad": 0
 		},
 		{
 			"channel": 10,
-			"note": 13,
+			"note": 49,
 			"pad": 1
 		},
 		{
 			"channel": 10,
-			"note": 14,
+			"note": 50,
 			"pad": 2
 		},
 		{
 			"channel": 10,
-			"note": 15,
+			"note": 51,
 			"pad": 3
 		},
 		{
 			"channel": 10,
-			"note": 16,
+			"note": 52,
 			"pad": 28
 		},
 		{
 			"channel": 10,
-			"note": 17,
+			"note": 53,
 			"pad": 29
 		},
 		{
 			"channel": 10,
-			"note": 18,
+			"note": 54,
 			"pad": 30
 		},
 		{
 			"channel": 10,
-			"note": 19,
+			"note": 55,
 			"pad": 31
 		},
 		{
 			"channel": 10,
-			"note": 20,
+			"note": 56,
 			"pad": 24
 		},
 		{
 			"channel": 10,
-			"note": 21,
+			"note": 57,
 			"pad": 25
 		},
 		{
 			"channel": 10,
-			"note": 22,
+			"note": 58,
 			"pad": 26
 		},
 		{
 			"channel": 10,
-			"note": 23,
+			"note": 59,
 			"pad": 27
 		},
 		{
 			"channel": 10,
-			"note": 24,
+			"note": 60,
 			"pad": 20
 		},
 		{
 			"channel": 10,
-			"note": 25,
+			"note": 61,
 			"pad": 21
 		},
 		{
 			"channel": 10,
-			"note": 26,
+			"note": 62,
 			"pad": 22
 		},
 		{
 			"channel": 10,
-			"note": 27,
+			"note": 63,
 			"pad": 23
 		},
 		{
 			"channel": 10,
-			"note": 28,
+			"note": 64,
 			"pad": 16
 		},
 		{
 			"channel": 10,
-			"note": 29,
+			"note": 65,
 			"pad": 17
 		},
 		{
 			"channel": 10,
-			"note": 30,
+			"note": 66,
 			"pad": 18
 		},
 		{
 			"channel": 10,
-			"note": 31,
+			"note": 67,
 			"pad": 19
 		},
 		{
 			"channel": 10,
-			"note": 32,
+			"note": 68,
 			"pad": 44
 		},
 		{
 			"channel": 10,
-			"note": 33,
+			"note": 69,
 			"pad": 45
 		},
 		{
 			"channel": 10,
-			"note": 34,
+			"note": 70,
 			"pad": 46
 		},
 		{
 			"channel": 10,
-			"note": 35,
+			"note": 71,
 			"pad": 47
 		},
 		{
 			"channel": 10,
-			"note": 36,
+			"note": 72,
 			"pad": 40
 		},
 		{
 			"channel": 10,
-			"note": 37,
+			"note": 73,
 			"pad": 41
 		},
 		{
 			"channel": 10,
-			"note": 38,
+			"note": 74,
 			"pad": 42
 		},
 		{
 			"channel": 10,
-			"note": 39,
+			"note": 75,
 			"pad": 43
 		},
 		{
 			"channel": 10,
-			"note": 40,
+			"note": 76,
 			"pad": 36
 		},
 		{
 			"channel": 10,
-			"note": 41,
+			"note": 77,
 			"pad": 37
 		},
 		{
 			"channel": 10,
-			"note": 42,
+			"note": 78,
 			"pad": 38
 		},
 		{
 			"channel": 10,
-			"note": 43,
+			"note": 79,
 			"pad": 39
 		},
 		{
 			"channel": 10,
-			"note": 44,
+			"note": 80,
 			"pad": 32
 		},
 		{
 			"channel": 10,
-			"note": 45,
+			"note": 81,
 			"pad": 33
 		},
 		{
 			"channel": 10,
-			"note": 46,
+			"note": 82,
 			"pad": 34
 		},
 		{
 			"channel": 10,
-			"note": 47,
+			"note": 83,
 			"pad": 35
 		},
 		{
 			"channel": 10,
-			"note": 48,
+			"note": 84,
 			"pad": 60
 		},
 		{
 			"channel": 10,
-			"note": 49,
+			"note": 85,
 			"pad": 61
 		},
 		{
 			"channel": 10,
-			"note": 50,
+			"note": 86,
 			"pad": 62
 		},
 		{
 			"channel": 10,
-			"note": 51,
+			"note": 87,
 			"pad": 63
 		},
 		{
 			"channel": 10,
-			"note": 52,
+			"note": 88,
 			"pad": 56
 		},
 		{
 			"channel": 10,
-			"note": 53,
+			"note": 89,
 			"pad": 57
 		},
 		{
 			"channel": 10,
-			"note": 54,
+			"note": 90,
 			"pad": 58
 		},
 		{
 			"channel": 10,
-			"note": 55,
+			"note": 91,
 			"pad": 59
 		},
 		{
 			"channel": 10,
-			"note": 56,
+			"note": 92,
 			"pad": 52
 		},
 		{
 			"channel": 10,
-			"note": 57,
+			"note": 93,
 			"pad": 53
 		},
 		{
 			"channel": 10,
-			"note": 58,
+			"note": 94,
 			"pad": 54
 		},
 		{
 			"channel": 10,
-			"note": 59,
+			"note": 95,
 			"pad": 55
 		},
 		{
 			"channel": 10,
-			"note": 60,
+			"note": 96,
 			"pad": 48
 		},
 		{
 			"channel": 10,
-			"note": 61,
+			"note": 97,
 			"pad": 49
 		},
 		{
 			"channel": 10,
-			"note": 62,
+			"note": 98,
 			"pad": 50
 		},
 		{
 			"channel": 10,
-			"note": 63,
+			"note": 99,
 			"pad": 51
 		}
 	]
