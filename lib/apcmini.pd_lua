@@ -530,8 +530,9 @@ function apcmini:in_1_note(args)
       -- note on port #2 in keyboard mode is passed through (mk2 only)
       self:outlet(1, "note", {n, v, c})
    elseif self.mode==2 and c==10 then
-      -- note on channel 10 in drum mode is passed through (mk2 only)
-      self:outlet(1, "note", {n, v, c})
+      -- note on channel 10 in drum mode (mk2 only)
+      --self:outlet(1, "note", {n, v, c})
+      self:outlet(1, "pad", {n, v})
    elseif c==1 then
       if n < 64 then
 	 -- pad pressed
