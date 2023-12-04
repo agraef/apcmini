@@ -139,7 +139,7 @@ function apcmini:initialize(sel, atoms)
    pdx.reload(self)
    -- internal state
    self.shift = 0 -- SHIFT key pressed (0 or 1)
-   self.model = 0 -- 0 = mk1, 1 = mk2
+   self.model = 1 -- 0 = mk1, 1 = mk2
    self.mode = 0 -- 0 = launch, 1 = note, 2 = drum, mk2 only
    self.key = 0 -- softkey mode, 0 = default, or 1..5
    self.assign = 0 -- fader assign, 0 = off, 1..4
