@@ -13,7 +13,7 @@ The mdnsbrowser external also requires a Zeroconf (Avahi/Bonjour) module for Lua
 
 ## Setup
 
-The patch will work with both the original version of the APC mini and the mk2 version, and will try to detect which version you have during initialization with some sysex magic. If the auto-detection doesn't work, you can also explicitly set the model in the patch by adding a creation argument to the `apcmini` object (by default, the mk1 version is assumed, add `1` as an argument if you have the mk2).
+The patch will work with both the original version of the APC mini and the mk2 version, and will try to detect which version you have during initialization with some sysex magic. If the auto-detection doesn't work, you can also explicitly set the model in the patch by adding a creation argument to the `apcmini` object (by default, the mk2 version is assumed, add `0` as an argument if you have the mk1).
 
 You also need to make sure that Pd's first MIDI input and output are hooked up to the APC mini's MIDI output and input, respectively. Note that the APC mini mk2 actually has *two* MIDI input and output ports; you need to connect to the *first* one in either case (labeled "APC mini mk2 Control").
 
