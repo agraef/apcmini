@@ -6,4 +6,6 @@ The external is written in Lua, so [pd-lua](https://agraef.github.io/pd-lua/) is
 
 More details about the message protocol can be found in the comment section at the beginning of the apcmini.pd_lua file in the lib subdirectory. Please also check the included help patch for examples showing how to use the external.
 
+**NOTE:** The present branch (koala-sampler) has modifications in the external for interfacing to Marek Bereza's [Koala Sampler](https://www.koalasampler.com/) application. The main patch can be found in koala-sampler.pd; documentation for this patch is in the [koala-sampler.md](koala-sampler.md) file.
+
 Copyright © 2023 by Albert Gräf <aggraef@gmail.com>, distributed under the GPL (see COPYING)
