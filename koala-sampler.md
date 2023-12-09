@@ -25,11 +25,13 @@ The patch outputs all MIDI data destined for Koala on Pd's *second* MIDI output,
 
 - To connect to the app on your *smartphone or tablet*, you need to set up some kind of MIDI connection between computer and smartphone, e.g., via USB or Bluetooth (using [MIDI BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy)). The latter option is probably the quickest way if both your computer and smartphone support MIDI over Bluetooth (if not, the [CME WIDI](https://www.cme-pro.com/widi-premium-bluetooth-midi/) dongles can help with that). The former option requires that both PC and smartphone can transmit and receive MIDI data over USB. Most devices nowadays have that capability, although some smartphones might require a special USB adapter to make that work. The process will be the same as when hooking up a MIDI keyboard to your smartphone using a USB cable.
 - If both Pd and Koala are on the *same local network*, then they can be connected via [RTP MIDI](https://en.wikipedia.org/wiki/RTP-MIDI). This is an Apple protocol and thus readily supported on iOS and macOS devices, but is also available on other platforms using 3rd party software. E.g., for Android, RTP MIDI support is provided by Abraham Wisman's excellent [MIDI Hub](https://abrahamwisman.com/midihub) application which also supports MIDI BLE. For Linux, you can use [rtpmidid](https://github.com/davidmoreno/rtpmidid). For Windows, get Tobias Erichsen's [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html).
-- If both Pd and Koala are running on the *same computer*, then in theory they can be connected using a MIDI loopback (readily available on Linux and Mac, and also on Windows using [3rd party software](https://www.tobias-erichsen.de/software/loopmidi.html)). However, you will have to make sure that Koala *only* receives Pd's second MIDI output and nothing else, which is problematic with the present Koala version (1.4081 at the time of this writing) which tries to read MIDI data from *all* input devices. On Linux, it is possible to work around this obstacle by running `aconnect -x` after launching Koala and then setting up the required connections, which can be automated with an ALSA MIDI patchbay program such as [qjackctl](https://qjackctl.sourceforge.io/). Unfortunately, I don't know of any such procedure for Mac and Windows, so for the time being you're probably better off if you just run Pd and Koala on separate systems and rely on MIDI BLE or RTP MIDI for communication.
+- If both Pd and Koala are running on the *same computer*, then in theory they can be connected using a MIDI loopback (readily available on Linux and Mac, and also on Windows using [3rd party software](https://www.tobias-erichsen.de/software/loopmidi.html)). However, you will have to make sure that Koala *only* receives Pd's second MIDI output and nothing else. This is problematic with the present Koala version (1.4081 at the time of this writing) which tries to read MIDI data from *all* input devices. On Linux, it is possible to work around this obstacle by setting up the connections with the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program using the koala-alsa.xml snapshot file included in the distribution; please check the snapshot file for instructions. Unfortunately, I don't know of any such procedure for Mac and Windows.
+
+**NOTE:** On Linux, the koala-alsa.xml snapshot file can also help you set up the required connections if Koala does not run on the same device. In that case just replace the "RtMidi Input Client" entry in the snapshot file by whatever ALSA MIDI client you use for the connection (usually some MIDI over USB, Bluetooth, or RTP client, see above).
 
 ### Koala MIDI Mapping
 
-Finally, you need to set up Koala's MIDI mapping. The repository includes a midiMapping.json file which you can copy to the location on your device where Koala keeps its configuration data (on Android this is usually in /Android/data/com.elf.koalasampler/files/settings, on Linux and macOS you can find the configuration data in the Documents/Koala folder). This has all the pads, faders, and buttons already set up so that, once you enable MIDI mapping in Koala's settings, the controls will work as described under Usage below.
+Finally, you need to set up Koala's MIDI mapping. The distribution includes a midiMapping.json file which you can copy to the location on your device where Koala keeps its configuration data (on Android this is usually in /Android/data/com.elf.koalasampler/files/settings, on Linux and macOS you can find the configuration data in the Documents/Koala folder). This has all the pads, faders, and buttons already set up so that, once you enable MIDI mapping in Koala's settings, the controls will work as described under Usage below.
 
 ## Usage
 
@@ -39,11 +41,11 @@ Once the device connections have been set up, the APC mini should light up as so
 
 Initially, the pads are laid out on the device as follows:
 
-> 1		2
+> 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
 >
-> 3		4
+> 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
 >
-> A		B
+> A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B
 
 In the upper half, you find all 4 banks of sequence launchers in different colors, each being a 2x4 grid with which you can launch the sequences in the corresponding bank. The lower half provides you with bank A and B of the 4x4 sample grids side by side and in different colors. These can be switched using the bank left/right arrow keys beneath the launchpad, cycling through the available bank combinations: A/B, B/C, and C/D. The lighting of the left/right buttons indicates which of the bank combinations is in effect, by denoting the directions in which you can move.
 
@@ -53,9 +55,9 @@ The note and drum modes of the APC mini mk2 are also supported. Note mode (SHIFT
 
 In drum mode (SHIFT+DRUM) the pads change to a layout which shows all 4x4 sample grids from left to right and bottom to top, as follows:
 
-> C		D
+> C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D
 >
-> A		B
+> A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B
 
 This enables you to play all four pad banks simultaneously in Koala. Pressing SHIFT+DRUM again exits drum mode and gives back access to the sequence launchers.
 
