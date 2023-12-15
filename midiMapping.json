@@ -282,6 +282,13 @@
 		},
 		{
 			"channel": 1,
+			"identifier": "mixer vol -1",
+			"isButton": false,
+			"isCC": true,
+			"value": 25
+		},
+		{
+			"channel": 1,
 			"identifier": "VOL",
 			"isButton": false,
 			"isCC": true,
@@ -401,7 +408,7 @@
 		},
 		{
 			"channel": 1,
-			"identifier": "mixer vol -1",
+			"identifier": "fx TALKBOX",
 			"isButton": false,
 			"isCC": true,
 			"value": 52
