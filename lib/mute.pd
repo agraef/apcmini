@@ -13,7 +13,7 @@
 #X obj 270 119 t f f;
 #X msg 130 191 ctl \$1 \$2 32;
 #X msg 40 192 mute \$2 \$1;
-#X obj 302 150 + 64;
+#X obj 302 150 + 65;
 #X connect 0 0 1 0;
 #X connect 1 0 9 0;
 #X connect 2 0 8 0;

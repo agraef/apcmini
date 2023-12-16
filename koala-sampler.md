@@ -1,5 +1,7 @@
 
-# koala-sampler
+# koala-sampler controller patch
+
+Copyright © 2023 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING). Please also check my GitHub page at https://agraef.github.io/.
 
 This Pd patch implements a control surface for Marek Bereza's popular [Koala Sampler](https://www.koalasampler.com/) application. The AKAI APC mini is a capable controller for this purpose, but since Koala Sampler (henceforth just called "Koala") has no built-in support for it, and the device offers no built-in programmability, some external program logic is required to provide a suitable interface between the APC mini and Koala. Which is what this patch provides.
 
@@ -7,7 +9,7 @@ This Pd patch implements a control surface for Marek Bereza's popular [Koala Sam
 
 This program is implemented as a Pd patch, and includes the apcmini external which is written in Lua, so you'll need Pd (any recent version of vanilla [Pd](http://msp.ucsd.edu/software.html) or [Purr Data](https://agraef.github.io/purr-data/) will do) and Pd-Lua. Purr Data comes with a suitable version of Pd-Lua included. When using vanilla Pd, get the latest Pd-Lua version from Deken, or directly from https://agraef.github.io/pd-lua/. (Pd-Lua 0.11.5 and later have been tested.)
 
-For the patch to work, you need to set up a few MIDI connections between the APC mini and Pd on one side, and Pd and Koala on the other side. You'll also have to configure the MIDI mapping in Koala. This is described in the Setup section below.
+For the patch to work, you need to set up a few MIDI connections between the APC mini and Pd on one side, and Pd and Koala on the other side. You'll also have to configure the MIDI mapping in Koala. This is described in the *Setup* section below.
 
 We recommend using the mk2 version of the APC mini, since its pads have RGB lighting and are much better suited for finger drumming. However, the patch will also work with the original version of the APC mini, and will try to detect which version you have during initialization with some sysex magic. If the auto-detection doesn't work, you can also explicitly set the model by adding a creation argument to the `apcmini` object in the patch (by default, the mk2 version is assumed, add `0` as an argument if you have the mk1).
 
@@ -21,13 +23,11 @@ In addition, to use the note mode on the APC mini mk2, you also need to connect 
 
 ### Connecting Pd and Koala
 
-The patch outputs all MIDI data destined for Koala on Pd's *second* MIDI output, so you'll have to connect that port to Koala's MIDI input. There are different ways to go about this, depending on whether you're using the Android/iOS app of Koala or whether you're running Koala on the same device as Pd, or on the same local network.
+The patch outputs all MIDI data destined for Koala on Pd's *second* MIDI output, so you'll have to connect that port to Koala's MIDI input. There are different ways to go about this, depending on whether you're using the Android/iOS or the Linux/Mac/Windows version of Koala, and whether you're running Koala on the same device as Pd or on the same local network.
 
-- To connect to the app on your *smartphone or tablet*, you need to set up some kind of MIDI connection between computer and smartphone, e.g., via USB or Bluetooth (using [MIDI BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy)). The latter option is probably the quickest way if both your computer and smartphone support MIDI over Bluetooth (if not, the [CME WIDI](https://www.cme-pro.com/widi-premium-bluetooth-midi/) dongles can help with that). The former option requires that both PC and smartphone can transmit and receive MIDI data over USB. Most devices nowadays have that capability, although some smartphones might require a special USB adapter to make that work. The process will be the same as when hooking up a MIDI keyboard to your smartphone using a USB cable.
+- To connect to the app on your *smartphone or tablet*, you need to set up some kind of MIDI connection between the computer on which you run Pd and the smartphone, e.g., via USB or Bluetooth (using [MIDI BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy)). The latter option is probably the quickest way if both your computer and smartphone support MIDI over Bluetooth (if not, the [CME WIDI](https://www.cme-pro.com/widi-premium-bluetooth-midi/) dongles can help with that). The former option requires that both PC and smartphone can transmit and receive MIDI data over USB. Most devices nowadays have that capability, although some smartphones might require a special USB adapter to make that work. The process will be the same as when hooking up a MIDI keyboard to your smartphone using a USB cable.
 - If both Pd and Koala are on the *same local network*, then they can be connected via [RTP MIDI](https://en.wikipedia.org/wiki/RTP-MIDI). This is an Apple protocol and thus readily supported on iOS and macOS devices, but is also available on other platforms using 3rd party software. E.g., for Android, RTP MIDI support is provided by Abraham Wisman's excellent [MIDI Hub](https://abrahamwisman.com/midihub) application which also supports MIDI BLE. For Linux, you can use [rtpmidid](https://github.com/davidmoreno/rtpmidid). For Windows, get Tobias Erichsen's [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html).
-- If both Pd and Koala are running on the *same computer*, then in theory they can be connected using a MIDI loopback (readily available on Linux and Mac, and also on Windows using [3rd party software](https://www.tobias-erichsen.de/software/loopmidi.html)). However, you will have to make sure that Koala *only* receives Pd's second MIDI output and nothing else. This is problematic with the present Koala version (1.4081 at the time of this writing) which tries to read MIDI data from *all* input devices. On Linux, it is possible to work around this obstacle by setting up the connections with the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program using the koala-alsa.xml snapshot file included in the distribution; please check the snapshot file for instructions. Unfortunately, I don't know of any such procedure for Mac and Windows.
-
-**NOTE:** On Linux, the koala-alsa.xml snapshot file can also help you set up the required connections if Koala does not run on the same device. In that case just replace the "RtMidi Input Client" entry in the snapshot file by whatever ALSA MIDI client you use for the connection (usually some MIDI over USB, Bluetooth, or RTP client, see above).
+- If both Pd and Koala are running on the *same computer*, then in theory they can be connected using a MIDI loopback (readily available on Linux and Mac, and also on Windows using [3rd party software](https://www.tobias-erichsen.de/software/loopmidi.html)). However, you will have to make sure that Koala *only* receives Pd's second MIDI output and nothing else. This is basically impossible with the present Koala version (1.4081 at the time of this writing) which tries to read MIDI data from *all* input devices. (But see *Bugs and Quirks* below for some workarounds.)
 
 ### Koala MIDI Mapping
 
@@ -51,7 +51,7 @@ In the upper half, you find all 4 banks of sequence launchers in different color
 
 ### Note and Drum Modes
 
-The note and drum modes of the APC mini mk2 are also supported. Note mode (SHIFT+NOTE) works as usual (see the APC mini manual for details) and comes in handy when playing a sample in key mode. Pressing SHIFT+NOTE again exits note mode.
+The note and drum modes of the APC mini mk2 are also supported. Note mode (SHIFT+NOTE) works as usual (see the APC mini manual for details) and comes in handy when playing a sample in Koala's keyboard mode. Pressing SHIFT+NOTE again exits note mode.
 
 In drum mode (SHIFT+DRUM) the pads change to a layout which shows all 4x4 sample grids from left to right and bottom to top, as follows:
 
@@ -84,26 +84,34 @@ Finally, the 8 scene buttons on the right (without pressing SHIFT) can be assign
 
 The following table lists all the MIDI messages that the apcmini patch spits out on the second MIDI output, along with their default mapping in the distributed midiMapping.json file:
 
-| Message               | Channel | Default Assignment                        |
-| --------------------- | ------- | ----------------------------------------- |
-| NOTE 36-51 (C1-D#2)   | 10      | Pad bank A                                |
-| NOTE 52-67 (E2-G3)    | 10      | Pad bank B                                |
-| NOTE 68-83 (G#3-B4)   | 10      | Pad bank C                                |
-| NOTE 84-99 (C5-D#6)   | 10      | Pad bank D                                |
-| NOTE 8-15 (G#-2-D#-1) | 10      | Sequence bank 1                           |
-| NOTE 24-31 (C0-G0)    | 10      | Sequence bank 2                           |
-| NOTE 0-7 (C-2-G-2)    | 10      | Sequence bank 3                           |
-| NOTE 16-23 (E-1-B-1)  | 10      | Sequence bank 4                           |
-| NOTE 36-99 (C1-D#6)   | 1       | Keyboard notes (NOTE mode, mk2)           |
-| CC 56-63              | 16      | Mixer solo (SHIFT+SOLO)                   |
-| CC 64-71              | 16      | Mixer mute (SHIFT+MUTE)                   |
-| CC 73-74              | 16      | Pad solo/mute (scene buttons 2 and 3)     |
-| CC 78-79              | 16      | Record, Play/Stop (scene buttons 7 and 8) |
-| CC 21-29 (0-127)      | 1       | Mixer volume (SHIFT+VOLUME)               |
-| CC 30-38 (0-127)      | 1       | Sample controls (SHIFT+PAN)               |
-| CC 39-47 (0-127)      | 1       | Performance faders page 1 (SHIFT+SEND)    |
-| CC 48-56 (0-127)      | 1       | Performance faders page 2 (SHIFT+DEVICE)  |
+| Message             | Channel | Default Assignment                        |
+| ------------------- | ------- | ----------------------------------------- |
+| NOTE 36-51 (C1-D#2) | 10      | Pad bank A                                |
+| NOTE 36-51 (C1-D#2) | 11      | Pad bank B                                |
+| NOTE 36-51 (C1-D#2) | 12      | Pad bank C                                |
+| NOTE 36-51 (C1-D#2) | 13      | Pad bank D                                |
+| NOTE 52-59 (E2-B2)  | 10      | Sequence bank 1                           |
+| NOTE 52-59 (E2-B2)  | 11      | Sequence bank 2                           |
+| NOTE 52-59 (E2-B2)  | 12      | Sequence bank 3                           |
+| NOTE 52-59 (E2-B2)  | 13      | Sequence bank 4                           |
+| NOTE 36-99 (C1-D#6) | 1       | Keyboard notes (NOTE mode, mk2)           |
+| CC 57-64            | 16      | Mixer solo (SHIFT+SOLO)                   |
+| CC 65-72            | 16      | Mixer mute (SHIFT+MUTE)                   |
+| NOTE 73-74 (C#4-D4) | 16      | Pad solo/mute (scene buttons 2 and 3)     |
+| NOTE 78-79 (F#4-G4) | 16      | Record, Play/Stop (scene buttons 7 and 8) |
+| CC 21-29 (0-127)    | 16      | Mixer volume (SHIFT+VOLUME)               |
+| CC 30-38 (0-127)    | 16      | Sample controls (SHIFT+PAN)               |
+| CC 39-47 (0-127)    | 16      | Performance faders page 1 (SHIFT+SEND)    |
+| CC 48-56 (0-127)    | 16      | Performance faders page 2 (SHIFT+DEVICE)  |
 
-Note that the default MIDI mapping leaves quite a few of the controls unassigned at present (specifically, the continuous controllers CC 25-29, CC 33-35, CC 38, CC 47, CC 56, and the scene buttons CC 72, CC 75-77), so you may want to map these to whatever Koala function you need which isn't covered in the default bindings.
+Note that the default MIDI mapping leaves quite a few of the controls unassigned at present (specifically, the continuous controllers CC 26-29, CC 33-35, CC 38, CC 47, CC 56, and the scene buttons NOTE 72, 75-77 on channel 16), so you may want to map these to whatever Koala function you need which isn't covered in the default bindings.
 
-Copyright © 2023 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING). Please also check my GitHub page at https://agraef.github.io/.
+## Bugs and Quirks
+
+As mentioned above, right now it is difficult to run the koala-sampler patch and Koala on the same (Linux, Mac, or Windows) computer, because Koala insists on connecting to *all* available MIDI inputs. It goes without saying that this kind of setup can easily wreak havoc, because Koala sees a whole lot of additional MIDI data that may interfere with the MIDI data from the patch that it is intended to see.
+
+On Linux, it is possible to work around this obstacle, because ALSA has utilities to control exactly which MIDI devices a running application is connected to. Thus, on Linux you want to disable all of Koala's ALSA MIDI input connections except the connection to Pd's second output port. The most convenient way to achieve this is to use the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program with the koala-alsa.xml snapshot file included in the distribution. Basically, after launching Koala just run `aj-snapshot -rax koala-alsa.xml` in the terminal and you should be set. Please check the snapshot file for details.
+
+Unfortunately, I don't know of any such procedure for Mac and Windows. That said, the MIDI implementation described above has been designed so that at least *some* of the functionality provided by the patch will work even in this situation. Specifically, the provided MIDI mapping will make sure that Koala only interprets the MIDI data that it's supposed to see, as long as you don't switch Koala to keyboard mode.
+
+However, if you do use Koala's keyboard mode (accessible using the keyboard button above the pads on the SEQUENCE page), then Koala will interpret all MIDI note data from all its inputs. In this case you want to turn off any special processing done by the koala-sampler patch while this mode is active. This can be done quickly by unchecking the big green "MIDI I/O" toggle in the patch. (Even then, pressing any of the buttons on the APC mini will send MIDI note data to Koala, so it's better to just not touch the controller at all while Koala is in keyboard mode.)
