@@ -68,7 +68,7 @@ MIDI over USB, Bluetooth, or RTP client).
   </client>
   <!-- If you have any other devices that should be connected directly to
        Koala, you can add them here. As examples I have included the Novation
-       Launchkey Mini mk3 and the AKAI MPK mini Plus. -->
+       Launchkey Mini mk3 and various AKAI MPK mini keyboards. -->
   <client name="Launchkey Mini MK3">
     <port id="0">
       <connection client="RtMidi Input Client" port="0" />
@@ -80,6 +80,16 @@ MIDI over USB, Bluetooth, or RTP client).
       <connection client="RtMidi Input Client" port="0" />
     </port>
     <port id="1" />
+  </client>
+  <client name="MPK mini 2">
+    <port id="0">
+      <connection client="RtMidi Input Client" port="0" />
+    </port>
+  </client>
+  <client name="MPK mini 3">
+    <port id="0">
+      <connection client="RtMidi Input Client" port="0" />
+    </port>
   </client>
 </alsa>
 </aj-snapshot>
