@@ -7,7 +7,7 @@ This Pd patch implements a control surface for Marek Bereza's popular [Koala Sam
 
 ## Requirements
 
-This program is implemented as a Pd patch, and includes the apcmini external which is written in Lua, so you'll need Pd (any recent version of vanilla [Pd](http://msp.ucsd.edu/software.html) or [Purr Data](https://agraef.github.io/purr-data/) will do) and Pd-Lua. Purr Data comes with a suitable version of Pd-Lua included. When using vanilla Pd, get the latest Pd-Lua version from Deken, or directly from https://agraef.github.io/pd-lua/. (Pd-Lua 0.11.5 and later have been tested.)
+This program is implemented as a Pd patch, and includes the apcmini external which is written in Lua, so you'll need Pd (any recent version of vanilla [Pd](http://msp.ucsd.edu/software.html) or [Purr Data](https://agraef.github.io/purr-data/) will do) and Pd-Lua. (Pd-Lua 0.11.5 and later have been tested.) Purr Data comes with a suitable version of Pd-Lua included. When using vanilla Pd, get the latest Pd-Lua version from Deken, or directly from https://agraef.github.io/pd-lua/; you'll also want to add `pdlua` to the startup libraries. Moreover, you need iemguts from Deken for the closebang object.
 
 For the patch to work, you need to set up a few MIDI connections between the APC mini and Pd on one side, and Pd and Koala on the other side. You'll also have to configure the MIDI mapping in Koala. This is described in the *Setup* section below.
 
@@ -66,7 +66,7 @@ This enables you to play all four pad banks simultaneously in Koala. Pressing SH
 To make the faders work, you need to press SHIFT and one of the FADER CTRL buttons beneath the launch pad. The four available assign modes are mapped as follows:
 
 - VOLUME: The first 4 faders control the corresponding volume sliders of bus 1-4 in the Koala mixer on the PERFORM page. The fifth fader controls the volume slider of the main bus.
-- PAN: The first three faders control Koala's VOL, PITCH, and PAN knobs on the SAMPLE page. The 7th and 8th faders control sample start and end in the sample editor.
+- PAN: The first three faders control Koala's VOL, PITCH, and PAN knobs on the SAMPLE page. The 7th and 8th faders control sample start and length in the sample editor.
 - SEND, DEVICE: The 8 faders control the VANILLA and STRAWBERRY performance effects on the PERFORM page, respectively.
 
 In any case, pressing SHIFT and the same FADER CTRL button again disables the fader assignment, so that you can play on the pads without changing a parameter by accidentally hitting one of the faders.
@@ -104,13 +104,13 @@ The following table lists all the MIDI messages that the apcmini patch spits out
 | CC 39-47 (0-127)    | 16      | Performance faders page 1 (SHIFT+SEND)    |
 | CC 48-56 (0-127)    | 16      | Performance faders page 2 (SHIFT+DEVICE)  |
 
-Note that the default MIDI mapping leaves quite a few of the controls unassigned at present (specifically, the continuous controllers CC 26-29, CC 33-35, CC 38, CC 47, CC 56, and the scene buttons NOTE 72, 75-77 on channel 16), so you may want to map these to whatever Koala function you need which isn't covered in the default bindings.
+Note that the default MIDI mapping leaves quite a few of the controls unassigned at present (such as the faders 6-9 in VOLUME mode, and the scene buttons 1 and 4-6), so you can map these to whatever Koala function you need which isn't covered in the default bindings.
 
 ## Bugs and Quirks
 
 As mentioned above, right now it is difficult to run the koala-sampler patch and Koala on the same (Linux, Mac, or Windows) computer, because Koala insists on connecting to *all* available MIDI inputs. It goes without saying that this kind of setup can easily wreak havoc, because Koala sees a whole lot of additional MIDI data that may interfere with the MIDI data from the patch that it is intended to see.
 
-On Linux, it is possible to work around this obstacle, because ALSA has utilities to control exactly which MIDI devices a running application is connected to. Thus, on Linux you want to disable all of Koala's ALSA MIDI input connections except the connection to Pd's second output port. The most convenient way to achieve this is to use the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program with the koala-alsa.xml snapshot file included in the distribution. Basically, after launching Koala just run `aj-snapshot -rax koala-alsa.xml` in the terminal and you should be set. Please check the snapshot file for details.
+On Linux, it is possible to work around this obstacle, because ALSA has utilities to control exactly which MIDI devices a running application is connected to. Thus, on Linux you want to disable all of Koala's ALSA MIDI input connections except the connection to Pd's second output port. The most convenient way to achieve this is to use the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program with the koala-alsa.xml snapshot file included in the distribution. Basically, after launching Koala just run `aj-snapshot -rax koala-alsa.xml` in the terminal and you should be set. Note that you'll have to re-run this command every time you launch Koala. Please check the snapshot file for details; you may also want to edit this file to adjust it to your setup.
 
 Unfortunately, I don't know of any such procedure for Mac and Windows. That said, the MIDI implementation described above has been designed so that at least *some* of the functionality provided by the patch will work even in this situation. Specifically, the provided MIDI mapping will make sure that Koala only interprets the MIDI data that it's supposed to see, as long as you don't switch Koala to keyboard mode.
 
