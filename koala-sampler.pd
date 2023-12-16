@@ -24,8 +24,8 @@ then force the device to standard cliplaunch mode (mk2 only) \, wait
 some more \, then initialize the pad display (this is done in the banks
 subpatch). This whole rigmarole is needed to have the mk2 properly
 initialized in case it's in drum or note mode at startup., f 31;
-#X obj 160 320 closebang;
 #X obj 160 349 s fini;
+#X obj 160 320 iemguts/closebang;
 #X connect 0 0 4 0;
 #X connect 1 0 2 0;
 #X connect 2 0 5 0;
@@ -37,7 +37,7 @@ initialized in case it's in drum or note mode at startup., f 31;
 #X connect 8 0 7 0;
 #X connect 9 0 10 0;
 #X connect 11 0 6 0;
-#X connect 13 0 14 0;
+#X connect 14 0 13 0;
 #X restore 310 220 pd init;
 #X obj 310 90 spigot;
 #X obj 349 60 tgl 15 1 empty empty empty 17 7 0 10 #fcfcfc #000000
