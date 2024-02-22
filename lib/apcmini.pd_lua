@@ -527,12 +527,11 @@ function apcmini:in_1_note(args)
    local n, v, c = table.unpack(args)
    n, v, c = midibyte(n), midibyte(v), midibyte(c, 1)
    if self.mode==1 and c>16 then
-      -- note on port #2 in keyboard mode is passed through (mk2 only)
-      self:outlet(1, "note", {n, v, c})
+      -- note on port #2 in keyboard mode (mk2 only)
+      self:outlet(1, "note1", {n, v})
    elseif self.mode==2 and c==10 then
       -- note on channel 10 in drum mode (mk2 only)
-      --self:outlet(1, "note", {n, v, c})
-      self:outlet(1, "pad", {n, v})
+      self:outlet(1, "note10", {n, v})
    elseif c==1 then
       if n < 64 then
 	 -- pad pressed
