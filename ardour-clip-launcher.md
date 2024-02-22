@@ -1,7 +1,9 @@
 
 # ardour-clip-launcher
 
-This Pd patch implements a MIDI to OSC bridge for Ardour's clip launcher in the Cue window. As this is still a fairly recent development which arrived in Ardour 7.x, support for corresponding control surfaces which work with this feature is still pretty thin (just the Ableton Push at the time of this writing, although support for the Novation launchpads seems to be planned). The AKAI APC mini is an excellent budget controller in this realm, and thus it would be nice to have it work with Ardour. However, writing a proper C++ driver for this device is a bit daunting, and Ardour's generic MIDI mapping facility doesn't help in this case either, since it doesn't offer any device feedback which is quite essential for this type of control surface.
+Copyright © 2023, 2024 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING). Please also check my GitHub page at https://agraef.github.io/.
+
+This Pd patch implements a MIDI to OSC bridge for Ardour's clip launcher in the Cue window. As this is still a fairly recent development which arrived in Ardour 7.x, support for corresponding control surfaces which work with this feature is still pretty thin (at the time of this writing, there's support for the Ableton Push and the Novation Launchpad). The AKAI APC mini is an excellent budget controller in this realm, and thus it would be nice to have it work with Ardour. However, writing a proper C++ driver for this device is a bit daunting, and Ardour's generic MIDI mapping facility doesn't help in this case either, since it doesn't offer any device feedback which is quite essential for this type of control surface.
 
 Fortunately, the clip launcher *is* well supported (including feedback) in Ardour's OSC control interface, and this is what we utilize in our implementation. The patch is written in Pd with the help of some Pd-Lua modules implementing the APC mini and OSC browser interfaces. The idea is that this can be modified with relative ease to accommodate future changes in the OSC interface and to support other similar devices. And it might actually be used as a stepping stone for an actual Ardour driver implementation.
 
@@ -9,7 +11,7 @@ Fortunately, the clip launcher *is* well supported (including feedback) in Ardou
 
 This program is implemented as a Pd patch, and includes some externals written in Lua, so you'll need Pd (any recent version of vanilla [Pd](http://msp.ucsd.edu/software.html) or [Purr Data](https://agraef.github.io/purr-data/) will do) and Pd-Lua. Purr Data comes with a suitable version of Pd-Lua included. When using vanilla Pd, get the latest Pd-Lua version from Deken, or directly from https://agraef.github.io/pd-lua/. (Pd-Lua 0.11.5 and later have been tested.)
 
-The mdnsbrowser external also requires a Zeroconf (Avahi/Bonjour) module for Lua which is written in C. This is used to discover the OSC connection to Ardour, and needs to be compiled in the lib subdirectory by running `make` there. (This will only work if you have Avahi or Bonjour installed and configured on your system; you may want to consult the README of the [mdnsbrowser](https://github.com/agraef/mdnsbrowser) module for more detailed information. Also, it seems that at the time of this writing, Ardour doesn't support Bonjour on Windows. Below you can find some instructions on how to manually set up the OSC connection if Zeroconf is not working for you.)
+The mdnsbrowser external also requires a Zeroconf (Avahi/Bonjour) module for Lua which is written in C. This is used to discover the OSC connection to Ardour, and needs to be compiled in the ardour-clip-launcher subdirectory by running `make` there. (This will only work if you have Avahi or Bonjour installed and configured on your system; you may want to consult the README of the [mdnsbrowser](https://github.com/agraef/mdnsbrowser) module for more detailed information. Also, it seems that at the time of this writing, Ardour doesn't support Bonjour on Windows. Below you can find some instructions on how to manually set up the OSC connection if Zeroconf is not working for you.)
 
 ## Setup
 
@@ -38,7 +40,3 @@ A few more options are available with the track buttons in the bottom row. In th
 Some of the track functions available through the shifted "softkeys" ([SHIFT] [CLIP STOP], [SHIFT] [SOLO], etc.) have also been implemented. [CLIP STOP] stops all clips in a given track, while [SOLO] and [MUTE] can be used to solo and mute a given track, respectively. The other softkeys don't seem applicable to Ardour's Cue window right now, so they haven't been implemented (yet). Also note that these softkeys function as radio buttons, so the different track button functions are mutually exclusive. Finally, pressing the same softkey again switches the track buttons back to the default fader assign and bank switching functions.
 
 This is all the functionality currently available. If you have any ideas for further improvements or notice any bugs, please let me know.
-
-
-
-Copyright © 2023 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING). Please also check my GitHub page at https://agraef.github.io/.

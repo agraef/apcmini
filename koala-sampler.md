@@ -1,7 +1,7 @@
 
 # koala-sampler controller patch
 
-Copyright © 2023 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING). Please also check my GitHub page at https://agraef.github.io/.
+Copyright © 2023, 2024 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING). Please also check my GitHub page at https://agraef.github.io/.
 
 This Pd patch implements a control surface for Marek Bereza's popular [Koala Sampler](https://www.koalasampler.com/) application. The AKAI APC mini is a capable controller for this purpose, but since Koala Sampler (henceforth just called "Koala") has no built-in support for it, and the device offers no built-in programmability, some external program logic is required to provide a suitable interface between the APC mini and Koala. Which is what this patch provides.
 
@@ -31,7 +31,7 @@ The patch outputs all MIDI data destined for Koala on Pd's *second* MIDI output,
 
 ### Koala MIDI Mapping
 
-Finally, you need to set up Koala's MIDI mapping. The distribution includes a midiMapping.json file which you can copy to the location on your device where Koala keeps its configuration data (on Android this is usually in /Android/data/com.elf.koalasampler/files/settings, on Linux and macOS you can find the configuration data in the Documents/Koala folder). This has all the pads, faders, and buttons already set up so that, once you enable MIDI mapping in Koala's settings, the controls will work as described under Usage below.
+Finally, you need to set up Koala's MIDI mapping. The distribution includes a midiMapping.json file in the koala-sampler subdirectory which you can copy to the location on your device where Koala keeps its configuration data (on Android this is usually in /Android/data/com.elf.koalasampler/files/settings, on Linux and macOS you can find the configuration data in the Documents/Koala folder). This has all the pads, faders, and buttons already set up so that, once you enable MIDI mapping in Koala's settings, the controls will work as described under Usage below.
 
 ## Usage
 
@@ -110,7 +110,7 @@ Note that the default MIDI mapping leaves quite a few of the controls unassigned
 
 As mentioned above, right now it is difficult to run the koala-sampler patch and Koala on the same (Linux, Mac, or Windows) computer, because Koala insists on connecting to *all* available MIDI inputs. It goes without saying that this kind of setup can easily wreak havoc, because Koala sees a whole lot of additional MIDI data that may interfere with the MIDI data from the patch that it is intended to see.
 
-On Linux, it is possible to work around this obstacle, because ALSA has utilities to control exactly which MIDI devices a running application is connected to. Thus, on Linux you want to disable all of Koala's ALSA MIDI input connections except the connection to Pd's second output port. The most convenient way to achieve this is to use the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program with the koala-alsa.xml snapshot file included in the distribution. Basically, after launching Koala just run `aj-snapshot -rax koala-alsa.xml` in the terminal and you should be set. Note that you'll have to re-run this command every time you launch Koala. Please check the snapshot file for details; you may also want to edit this file to adjust it to your setup.
+On Linux, it is possible to work around this obstacle, because ALSA has utilities to control exactly which MIDI devices a running application is connected to. Thus, on Linux you want to disable all of Koala's ALSA MIDI input connections except the connection to Pd's second output port. The most convenient way to achieve this is to use the [aj-snapshot](https://aj-snapshot.sourceforge.io/) program with the koala-alsa.xml snapshot file included in the distribution (this can be found in the koala-sampler subdirectory). Basically, after launching Koala just run `aj-snapshot -rax koala-alsa.xml` in the terminal and you should be set. Note that you'll have to re-run this command every time you launch Koala. Please check the snapshot file for details; you may also want to edit this file to adjust it to your setup.
 
 Unfortunately, I don't know of any such procedure for Mac and Windows. That said, the MIDI implementation described above has been designed so that at least *some* of the functionality provided by the patch will work even in this situation. Specifically, the provided MIDI mapping will make sure that Koala only interprets the MIDI data that it's supposed to see, as long as you don't switch Koala to keyboard mode.
 
