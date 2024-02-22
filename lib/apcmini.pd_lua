@@ -527,28 +527,26 @@ function apcmini:in_1_note(args)
    local n, v, c = table.unpack(args)
    n, v, c = midibyte(n), midibyte(v), midibyte(c, 1)
    if self.mode==1 and c>16 then
-      -- note on port #2 in keyboard mode is passed through (mk2 only)
-      self:outlet(1, "note", {n, v, c})
+      -- note on port #2 in keyboard mode (mk2 only)
+      self:outlet(1, "note1", {n, v})
    elseif self.mode==2 and c==10 then
-      -- note on channel 10 in drum mode is passed through (mk2 only)
-      self:outlet(1, "note", {n, v, c})
+      -- note on channel 10 in drum mode (mk2 only)
+      self:outlet(1, "note10", {n, v})
    elseif c==1 then
       if n < 64 then
-	 if v>0 then
-	    -- pad pressed
-	    self:outlet(1, "pad", {n})
-	 end
+	 -- pad pressed
+	 self:outlet(1, "pad", {n, v})
       else
 	 local n = self:from_button(n)
 	 if n == 98 then
 	    -- SHIFT button
 	    self.shift = v>0 and 1 or 0
+	 elseif n >= 82 and self.shift == 0 then
+	    -- scene button
+	    self:outlet(1, "scene", {n-82, v})
 	 elseif v > 0 then
 	    if n >= 82 then
-	       if self.shift == 0 then
-		  -- scene button
-		  self:outlet(1, "scene", {n-82})
-	       elseif n == 89 then
+	       if n == 89 then
 		  self:outlet(1, "stop-all", {})
 	       elseif n <= 86 then
 		  -- softkeys

@@ -1,4 +1,4 @@
-#N canvas 743 315 490 491 12;
+#N canvas 688 297 490 491 12;
 #X declare -path lib -path ardour-clip-launcher;
 #X obj 20 390 udpsend;
 #X obj 20 419 tgl 15 0 connected empty connected 17 7 0 10 #fcfcfc
@@ -214,7 +214,7 @@ purposes;
 #X connect 35 0 37 0;
 #X connect 37 0 36 0;
 #X restore 180 180 pd osc-input;
-#N canvas 761 277 683 588 osc-output 0;
+#N canvas 818 277 910 588 osc-output 0;
 #X obj 300 410 route 9;
 #X msg 300 439 /master/fader \$1;
 #X msg 300 472 /strip/fader/\$1 \$2;
@@ -259,6 +259,12 @@ stop stop-all solo mute, f 87;
 manage these states \, and apparently Ardour doesn't send any feedback
 either \, so we maintain the state of those switches here and also
 provide feedback for the apcmini object.;
+#X obj 40 109 stripnote;
+#X obj 80 139 stripnote;
+#X obj 600 280 route note1 note10;
+#X text 600 310 Note pass-through from the note and drum modes. In
+the future \, we might want to do something sensible here \, along
+the lines of what the koala-sampler app does., f 41;
 #X connect 0 0 1 0;
 #X connect 0 1 2 0;
 #X connect 1 0 3 0;
@@ -296,8 +302,8 @@ provide feedback for the apcmini object.;
 #X connect 32 0 4 0;
 #X connect 33 0 28 1;
 #X connect 34 0 32 1;
-#X connect 35 0 23 0;
-#X connect 35 1 16 0;
+#X connect 35 0 40 0;
+#X connect 35 1 41 0;
 #X connect 35 2 26 0;
 #X connect 35 3 30 0;
 #X connect 35 4 9 0;
@@ -308,8 +314,11 @@ provide feedback for the apcmini object.;
 #X connect 35 9 13 0;
 #X connect 35 10 36 0;
 #X connect 35 11 38 0;
+#X connect 35 12 42 0;
 #X connect 36 0 37 0;
 #X connect 38 0 37 0;
+#X connect 40 0 23 0;
+#X connect 41 0 16 0;
 #X restore 330 410 pd osc-output;
 #X obj 20 450 declare -path lib -path ardour-clip-launcher;
 #X connect 0 0 1 0;
