@@ -22,7 +22,7 @@ local pdx = require 'pdx'
 -- unchanged. For mk1 -> mk2 conversion, the six color values of the mk1 are
 -- mapped to the corresponding color specifications of the mk2. Conversely,
 -- mk2 RGB color values are mapped to a mk1 color spec that comes reasonably
--- close (which obviuosly is a rather rough approximation, given that the mk2
+-- close (which obviously is a rather rough approximation, given that the mk2
 -- uses a much more extensive RGB scheme involving both velocities and MIDI
 -- channels).
 
@@ -106,10 +106,12 @@ local pdx = require 'pdx'
 -- if the mode gets changed by pressing one of the shifted softkey buttons on
 -- the device.
 
--- `pad`: Reports the number in the range 0-63 of a pad pressed by the user.
+-- `pad`: Reports the number in the range 0-63 of a pad pressed by the user,
+-- along with the velocity value (0 = off, 127 = on).
 
 -- `scene`. Reports the scene (a.k.a. row) number in the range 0..7 if one of
--- the (unshifted) scene buttons is pressed.
+-- the (unshifted) scene buttons is pressed, along with the velocity value
+-- (0 = off, 127 = on).
 
 -- `bank-up`, `bank-down`, `bank-left`, `bank-right`: These parameter-less
 -- messages are output when the bank change buttons in the bottom row are
@@ -131,6 +133,18 @@ local pdx = require 'pdx'
 -- depending on the current fader assignment (assign > 0). The first argument
 -- is the track/column number in the range 0..8 (with the value 8 denoting the
 -- master fader), the second argument the fader value.
+
+-- `note1`, `note10`: These messages report note-velocity pairs when the user
+-- presses a pad in note and drum mode, respectively. The application may want
+-- to remap these as needed and send them out to a connected synth via the
+-- MIDI interface. Note that the pads on the APC mini aren't velocity-sensitive,
+-- so a velocity value of 127 indicates a note-on, and 0 a note-off message.
+
+-- In note mode (`note1` message), the range of note numbers depends on the
+-- scale and octave settings, while drum mode (`note10` message) always
+-- outputs note numbers ranging from 64 to 127 (which you will have to remap
+-- to something more sensible if you want to output to some drum synth or
+-- similar application).
 
 function apcmini:initialize(sel, atoms)
    self.inlets = 1
