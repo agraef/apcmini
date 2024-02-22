@@ -6,6 +6,10 @@ The external is written in Lua, so [pd-lua](https://agraef.github.io/pd-lua/) is
 
 More details about the message protocol can be found in the comment section at the beginning of the apcmini.pd_lua file in the lib subdirectory. Please also check the included help patch for an introductory example showing how to use the external.
 
-A full-blown example can be found in ardour-clip-launcher.pd which interfaces the APC mini to Ardour's clip launcher; documentation for this patch is in the ardour-clip-launcher.md file.
+Two more comprehensive examples are also included, with corresponding patches in the main source directory and auxiliary files in the ardour-clip-launcher and koala-sampler subfolders, respectively.
 
-Copyright © 2023 by Albert Gräf \<<aggraef@gmail.com>\>, distributed under the GPL (see COPYING)
+- ardour-clip-launcher.pd interfaces the APC mini to Ardour's clip launcher; documentation for this patch is in the [ardour-clip-launcher.md](ardour-clip-launcher.md) file.
+
+- koala-sampler.pd can be used to control Marek Bereza's [Koala Sampler](https://www.koalasampler.com/) application; documentation for this patch is in the [koala-sampler.md](koala-sampler.md) file.
+
+Copyright © 2023, 2024 by Albert Gräf <aggraef@gmail.com>, distributed under the GPL (see COPYING)
